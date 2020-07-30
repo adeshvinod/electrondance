@@ -1,0 +1,21 @@
+set frameRate in processing sketch:
+frameRate(30);
+
+save frames into specific folder (data folder)
+ saveFrame("data/pic######");
+(this will save images as pic000001, pic000002 etc and my default save it as .tif file unless specified pic######.png/.jpg)
+
+extract the FFMPEG folder into the data folder (same folder as the saved pics)
+(might have to extract the .exe file also inside bins into the folder, not sure)
+
+hold shift and right click and open command promp (will automatically open prompt in that particular folder destination)
+ 
+.\ffmpeg -r 30 -i pic%06d.tif -c:v libx264 -vf "fps=30,format=yuv420p" outHQ.mp4
+
+-r    rate
+-i    input file
+pic%06d.tif    if the pics are saved as pic000001,pic000002 etc (6 digits) 
+pic%03d.tif    if pics are saved as pic001,pic002 etc
+-c:v libx265    using libx264 library
+-vf   applying video filter with paramters fps=30 and quality 420p
+outHQ.mp4    final output file name
